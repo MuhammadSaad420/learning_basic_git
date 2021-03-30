@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,37 +13,60 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(),
-        drawer: Drawer(
-          child: ListView(
-            children: [
-              ListTile(
-                leading: const Icon(Icons.email),
-                title: const Text("My e-mail"),
-                onTap: () => {},
-              ),
-              const Divider(
-                height: 1,
-                color: Colors.grey,
-              ),
-              const DrawerTitle("App management"),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text("Settings"),
-                onTap: () => {},
-              ),
-              ListTile(
-                leading: const Icon(Icons.info),
-                title: const Text("Info"),
-                onTap: () => {},
-              ),
-              const Divider(
-                height: 1,
-                color: Colors.grey,
-              ),
-            ],
+      home: SplashScreen(
+          seconds: 5,
+          navigateAfterSeconds: new NavigationScreen(),
+          title: new Text(
+            'Welcome In SplashScreen',
+            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
           ),
+          image: new Image.network('https://i.imgur.com/TyCSG9A.png'),
+          //backgroundColor: Colors.white,
+          styleTextUnderTheLoader: new TextStyle(),
+          photoSize: 100.0,
+          onClick: () => print("Flutter"),
+          loaderColor: Colors.red),
+    );
+  }
+}
+
+class NavigationScreen extends StatelessWidget {
+  const NavigationScreen({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.email),
+              title: const Text("My e-mail"),
+              onTap: () => {},
+            ),
+            const Divider(
+              height: 1,
+              color: Colors.grey,
+            ),
+            const DrawerTitle("App management"),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text("Settings"),
+              onTap: () => {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text("Info"),
+              onTap: () => {},
+            ),
+            const Divider(
+              height: 1,
+              color: Colors.grey,
+            ),
+          ],
         ),
       ),
     );
